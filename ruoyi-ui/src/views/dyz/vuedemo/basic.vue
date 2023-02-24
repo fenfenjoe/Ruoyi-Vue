@@ -1,0 +1,99 @@
+<!-- 本页面描述了一个VUE文件里面有哪些最基本的部分。这些部分基本每个vue文件都会用到 -->
+<!--
+主要提到：
+vue文件结构
+vue基础语法
+-->
+
+
+<template>
+  <!-- todo 为什么一定是app-container? -->
+  <div class="app-container">
+      <!-- 2. 显示param1 的值-->
+      <div> {{param1}} </div>
+      <!-- 6. 为按钮绑定一个事件监听-->
+      <button @click="increment">{{param2.subParam1}}</button>
+      <!-- 8. 显示param3CN 的值-->
+      <div> {{param3CN}} </div>
+
+      <!-- 9. 为组件的class绑定一个参数-->
+      <!-- param4=true:则往p的class中添加 isActive-->
+      <p :class="{isActive:param4}"> hello </p>
+      <!-- or -->
+      <p v-bind:class="{isActive:param4}"> hello </p>
+      <!-- :class可以配合属性使用（甚至可以配合计算属性）-->
+      <p :class="param5"> hello </p>
+
+      <!-- 10. 绑定内联样式 -->
+      <div :style="{'background-color': '#111111',fontSize: 30}"> hello</div>
+      <!-- :style可以配合属性使用（甚至可以配合计算属性）-->
+      <div :style="param6"> hello</div>
+
+      <!-- 11. 条件渲染：根据条件结果，显示哪一块内容 -->
+      <h1 v-if="param7==1">haha</h1>
+      <h1 v-else-if="param7==2">hehe</h1>
+      <h1 v-else>hoho</h1>
+  </div>
+</template>
+
+<script>
+  export default{
+
+    name: 'my_name',
+
+    //1. 组件需要用到的参数，在这里定义
+    data(){
+      return{
+        //2. 定义一个字符串
+        param1: 'hello world!',
+        //3. 定义一个对象
+        param2: {
+          subParam1: 1,
+          subParam2: new Date()
+        },
+        param3: 'Y',
+        param4: true,
+        param5:{isActive:param4},
+        param6:{'background-color': "#111111",fontSize: 30},
+        param7:1
+      };
+    },
+
+    //4. 组件需要用到的方法，在这里定义
+    methods:{
+      //5. 执行后弹框
+      helloworld(){
+        this.$message('helloworld');
+      },
+
+      //6. 执行后修改参数值
+      increment(){
+        this.param2.subParam1++;
+      }
+
+    },
+
+    //7. 生命周期钩子，还有created()、unmounted()...
+    mounted() {
+
+    },
+
+    //8. 组件需要用到的“计算属性”，在这里定义
+    //计算属性：为了在模板(template)中不要写复杂的计算逻辑，于是有了计算属性这个概念
+    //计算属性只会基于其响应式依赖(param3)改变而改变。
+    //计算属性的值会被缓存下来，若响应式依赖的值没有发生变化，则只会取缓存，不会重新计算。
+    computed:{
+      param3CN(){
+        return this.param3 =='Y'?'是':'否';
+      }
+    }
+
+  }
+</script>
+
+<!-- element-ui组件 需要用类选择器来改变style -->
+<style>
+  .el-container {
+    background-color: #1a0f45;
+  }
+</style>
