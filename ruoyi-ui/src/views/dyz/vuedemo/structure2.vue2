@@ -1,0 +1,15 @@
+<!-- 该文件描述单页面总体的布局。一般包含顶栏、侧边栏、主要区域、底栏 -->
+<!-- 如果没有el-header或el-footer，则组件会变成水平排列 -->
+<template>
+<el-container>
+
+<el-header></el-header><!-- 顶栏 -->
+
+<el-container>
+  <el-aside></el-aside><!-- 侧边栏 -->
+  <el-main></el-main><!-- 主要区域 -->
+</el-container>
+
+<el-footer></el-footer><!-- 底栏 -->
+</el-contain>
+</template>

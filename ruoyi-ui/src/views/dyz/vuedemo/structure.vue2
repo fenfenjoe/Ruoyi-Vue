@@ -1,0 +1,17 @@
+<!-- 该文件描述如何设计单页面的布局 -->
+
+
+
+<template>
+  <div class="app-container">
+    <!-- 1. 定义一行，每行最多有24列
+    :gutter="20" 每个单元格的左、右padding各为10。
+    -->
+    <el-row :gutter="20">
+      <!-- 定义一个栅格，:span表示这个栅格占6列  :offset表示该栅格向左空6列-->
+      <el-col :span="6"></el-col>
+      <el-col :span="6"></el-col>
+      <el-col :span="6" :offset="6"></el-col>
+    </el-row>
+  </div>
+</template>

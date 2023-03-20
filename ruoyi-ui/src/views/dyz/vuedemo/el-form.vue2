@@ -1,0 +1,102 @@
+<!-- 表单常用写法 -->
+
+
+<template>
+  <div class="app-container">
+    <!--1. 表单
+    以下都是vue的特性。
+    :inline="true"  一行可以显示多个form-item
+    ref             可以通过$refs.queryForm 获得这个表单的dom元素
+    :model          绑定data()中的参数
+    :rules          表单校验函数（提交时执行）
+    -->
+    <el-form :model="queryParams" ref="queryForm" :rules="rules" size="small" :inline="true">
+      <!--2. 表单项：文本框
+      prop 设置表单校验时传入的字段名
+      -->
+      <el-form-item label="角色名称" prop="roleName">
+        <!-- v-model 绑定到queryParams.roleName这个属性。用户输入，roleName的值会跟着变动-->
+        <!-- style 样式-->
+        <!-- @keyup.enter.native 回车触发函数-->
+        <el-input
+          v-model="queryParams.roleName"
+          placeholder="请输入角色名称"
+          clearable
+          style="width: 240px"
+        />
+      </el-form-item>
+
+      <!--2.1 密码框 -->
+      <el-input placeholder="请输入密码" v-model="input" show-password></el-input>
+
+      <!--2.2 文本域 -->
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内容"
+        v-model="textarea">
+      </el-input>
+
+      <!-- 文本框，更多详见：https://element.eleme.cn/#/zh-CN/component/input -->
+
+
+      <!--3. 表单项：单选框 -->
+      <el-form-item label="角色性别" prop="gender">
+          <el-radio v-model="queryParams.gender" label="male">男</el-radio>
+          <el-radio v-model="queryParams.gender" label="female">女</el-radio>
+      </el-form-item>
+
+      <!--4. 表单项：单选框组
+      @input     添加监听方法，每当修改选择，就会执行一次监听方法
+      -->
+      <el-radio-group v-model="radio" @input="radioChange">
+        <el-radio :label="3">备选项</el-radio>
+        <el-radio :label="6">备选项</el-radio>
+        <el-radio :label="9">备选项</el-radio>
+      </el-radio-group>
+
+      <!--5. 表单项：多选框
+      @change     添加监听方法，每当修改选择，就会执行一次监听方法
+      -->
+      <el-form-item label="角色性别" prop="checkbox">
+          <el-checkbox v-model="checked" @change="checkboxChange">备选项</el-checkbox>
+      </el-form-item>
+
+
+    </el-form>
+
+
+  </div>
+
+
+</template>
+
+
+
+<script>
+export default{
+  name: 'dyz_test',
+
+  //页面参数
+  data(){
+    return{
+      queryParams: {
+        pageNum: 1,
+        pageSize: 10,
+        roleName: undefined,
+        roleKey: undefined,
+        status: undefined
+      }
+    }
+  },
+  //页面可用方法
+  methods:{
+
+  }
+}
+
+</script>
+
+<style scoped>
+
+</style>
