@@ -7,10 +7,17 @@ vue基础语法
 
 
 <template>
-  <!-- todo 为什么一定是app-container? -->
+  <!-- app-container 的样式定义在：ruoyi-ui/src/assets/styles/index.scss -->
   <div class="app-container">
-      <!-- 2. 显示param1 的值-->
+      <!-- 2. 将参数绑定到div的值上。param1改变，div的值也会跟着改变；反之，div值改变，param1跟着改变-->
       <div> {{param1}} </div>
+      <!-- 2.1 将参数绑定到div的id属性上-->
+      <div v-bind:id="param1"></div>
+      <div :id="param1"></div>
+      <!-- 2.2 将参数绑定到div的class属性上-->
+      <div v-bind:class="param1"></div>
+      <div :class="param1"></div>
+      
       <!-- 6. 为按钮绑定一个事件监听-->
       <button @click="increment">{{param2.subParam1}}</button>
       <!-- 8. 显示param3CN 的值-->
@@ -33,6 +40,11 @@ vue基础语法
       <h1 v-if="param7==1">haha</h1>
       <h1 v-else-if="param7==2">hehe</h1>
       <h1 v-else>hoho</h1>
+
+      <!-- 12. 循环语句 -->
+      <li v-for="item in param8">
+        {{ item }}
+      </li>
   </div>
 </template>
 
@@ -55,7 +67,8 @@ vue基础语法
         param4: true,
         param5:{isActive:param4},
         param6:{'background-color': "#111111",fontSize: 30},
-        param7:1
+        param7:1,
+        param8:["tom","jerry","amy"]
       };
     },
 
