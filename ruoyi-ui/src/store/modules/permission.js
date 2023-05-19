@@ -126,7 +126,10 @@ export const loadView = (view) => {
     return (resolve) => require([`@/views/${view}`], resolve)
   } else {
     // 使用 import 实现生产环境的路由懒加载
-    return () => import(`@/views/${view}`)
+    // 这样部署到nginx上会报错，因此用回上面的方式来加载
+    // return () => import(`@/views/${view}`)
+    
+    return (resolve) => require([`@/views/${view}`], resolve)
   }
 }
 
